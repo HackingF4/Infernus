@@ -1,0 +1,6 @@
+This file is a placeholder for Creepster.ttf.
+In a real implementation, this would be an actual TTF font file.
+
+To complete this implementation, download the Creepster font from Google Fonts or another source and replace this file with the actual font file.
+
+The font is also imported via Google Fonts in the CSS, so this file is optional if you have internet connection. 

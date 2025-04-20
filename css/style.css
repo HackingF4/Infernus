@@ -1,0 +1,643 @@
+/* Importação de fontes */
+@import url('https://fonts.googleapis.com/css2?family=Creepster&family=Share+Tech+Mono&display=swap');
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Variáveis de cor */
+:root {
+    --bg-color: #000000;
+    --text-color: #eeeeee;
+    --accent-color: #b30000;
+    --secondary-color: #222222;
+    --border-color: #550000;
+    --shadow-color: rgba(255, 0, 0, 0.3);
+    --glitch-color-1: #ff0000;
+    --glitch-color-2: #0000ff;
+}
+
+/* Fontes */
+@font-face {
+    font-family: 'Creepster';
+    src: url('../fonts/Creepster.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Estilos gerais */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Share Tech Mono', 'Courier New', monospace;
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100vh;
+}
+
+/* Overlay de ruído */
+.noise-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3QUcCgkX0jR0SQAAAj9JREFUaN7tmMFOwzAMhv+krIeNN0A7AXsL8P5vwG4c4MZlYkLjUKliTZymMS3tzpVqa7FrO99vO3WdppTQNrQP8A8gkBAZIiEyREJkiITIEAmRIRIiQyREhkiIDJEQGSIhMkRCZIiEyBAJkfEnpEjp5EjkbSKT0u83B3FvdsZGF0fZIBxFGdI2fNycXLM9Ic+3d2L/8XiQ+rffwNsKSbxpTJpjQmJjFgI4DcR97FKiL4sOErLl+u5eHd+8vYrjtQ1yI0bI2xXdD4mGPCMBVAgQeUZK5qDrWxLbKgSgv7cLGSMmyALFPdFYU8R5gPD8SFy7FhMpAeSe0NgwkwnRyq321lgL0FoANHYCsOQlcyoKwvMuCpLDxLBJrmRLQHiexDZNM7W1tQe6AKyV3mZMlIRo7VwEwhMgtiULtRa/9Lmt1SdttCz4vAh4vAJAhIQEzqgpzE2tE3NMCAGUFiMSovVdS0B43oXe2nOdQ3RYPFuziPDSCgNplcRUgGQJoCQbWe/l1dYEAMsGgIPkUjHKwLH3k0Oi4Wt4TzQxs84jMSioDNGqXyy7WsIX/JjxfJY05S0TQQAJTPUAWAnZp+0cIM5f9jSXLpaNIAXzFJ615ktXvnO/UxtI0KlFa9Xm6mX1dPj6RY6/HQ7iutJTTwqn9BfFvMvmkexFv6tmCcByqYhppgpfuJyPRzF+8/wk9r9//+AobaYlPjRy37iE/AaI7SfknypE9meJhMgQCZEhEiJDJESGSIgMkRAZIiEyREJkiITIEAmRIRIiQyREhkj41/gAWQ8LhUKMJrEAAAAASUVORK5CYII=');
+    opacity: 0.05;
+    z-index: -1;
+    pointer-events: none;
+    animation: noise 0.5s steps(10) infinite;
+}
+
+@keyframes noise {
+    0%, 100% { transform: translate(0, 0); }
+    10% { transform: translate(-1px, 1px); }
+    20% { transform: translate(1px, -1px); }
+    30% { transform: translate(-1px, -1px); }
+    40% { transform: translate(1px, 1px); }
+    50% { transform: translate(-1px, 1px); }
+    60% { transform: translate(1px, -1px); }
+    70% { transform: translate(-1px, -1px); }
+    80% { transform: translate(1px, 1px); }
+    90% { transform: translate(-1px, 1px); }
+}
+
+/* Container principal */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    position: relative;
+}
+
+/* Cabeçalho */
+header {
+    margin-bottom: 3rem;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1.5rem;
+}
+
+/* Efeito Glitch no título */
+.glitch-title {
+    font-family: 'Creepster', cursive;
+    font-size: 3.5rem;
+    color: var(--accent-color);
+    text-shadow: 0 0 5px var(--shadow-color), 0 0 10px var(--shadow-color);
+    position: relative;
+    animation: flicker 4s linear infinite;
+}
+
+.glitch-title::before,
+.glitch-title::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+}
+
+.glitch-title::before {
+    content: "Infernus Dooxing";
+    left: 2px;
+    text-shadow: -1px 0 var(--glitch-color-1);
+    animation: glitch-1 2s infinite linear alternate-reverse;
+}
+
+.glitch-title::after {
+    content: "Infernus Dooxing";
+    left: -2px;
+    text-shadow: 1px 0 var(--glitch-color-2);
+    animation: glitch-2 3s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-1 {
+    0%, 10%, 20%, 30%, 40%, 50%, 60%, 70%, 80%, 90%, 100% { transform: translate(0); }
+    5%, 15%, 25%, 35%, 45%, 55%, 65%, 75%, 85%, 95% { transform: translate(-2px, 2px); }
+}
+
+@keyframes glitch-2 {
+    0%, 10%, 20%, 30%, 40%, 50%, 60%, 70%, 80%, 90%, 100% { transform: translate(0); }
+    5%, 15%, 25%, 35%, 45%, 55%, 65%, 75%, 85%, 95% { transform: translate(2px, -2px); }
+}
+
+@keyframes flicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+    20%, 24%, 55% { opacity: 0.8; }
+}
+
+/* Subtítulo */
+.subtitle {
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    color: #666;
+    margin-top: 0.5rem;
+    font-family: 'Share Tech Mono', monospace;
+    text-transform: uppercase;
+}
+
+/* Container de posts */
+.posts-container {
+    margin-top: 2rem;
+}
+
+/* Links de posts */
+.post-link {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    background-color: var(--secondary-color);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.post-link:hover {
+    transform: translateX(5px);
+    box-shadow: 0 0 15px var(--shadow-color);
+}
+
+.post-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 0, 0, 0.1), transparent);
+    transform: translateX(-100%);
+    animation: scanner 5s infinite;
+}
+
+@keyframes scanner {
+    0% { transform: translateX(-100%); }
+    50%, 100% { transform: translateX(100%); }
+}
+
+.post-link a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1.4rem;
+    display: block;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.post-link a:hover {
+    color: var(--accent-color);
+    text-shadow: 0 0 8px var(--shadow-color);
+}
+
+.post-date {
+    color: #666;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+/* Rodapé */
+footer {
+    margin-top: 3rem;
+    text-align: center;
+    border-top: 1px solid var(--border-color);
+    padding-top: 1.5rem;
+    color: #666;
+}
+
+.warning {
+    color: var(--accent-color);
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Página de post individual */
+.post-page .post-title {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.media-container {
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    background-color: var(--secondary-color);
+}
+
+.media-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: repeating-linear-gradient(
+        to right,
+        transparent,
+        transparent 30px,
+        rgba(255, 0, 0, 0.5) 30px,
+        rgba(255, 0, 0, 0.5) 60px
+    );
+    animation: scan-line 2s linear infinite;
+    opacity: 0.3;
+    z-index: 1;
+}
+
+@keyframes scan-line {
+    0% { transform: translateY(-5px); }
+    100% { transform: translateY(100%); }
+}
+
+.media-container video,
+.media-container img {
+    width: 100%;
+    display: block;
+    max-height: 500px;
+    object-fit: contain;
+}
+
+/* Estilo especial para contêiner de áudio */
+.audio-container {
+    padding: 2rem;
+    text-align: center;
+}
+
+.audio-visual {
+    height: 200px;
+    margin-bottom: 1rem;
+    background-color: #111;
+    position: relative;
+    overflow: hidden;
+}
+
+.waveform {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(0deg, #000, #111);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.waveform::before {
+    content: '';
+    width: 100%;
+    height: 1px;
+    background-color: var(--accent-color);
+    position: absolute;
+    animation: wave 2s ease infinite;
+}
+
+@keyframes wave {
+    0%, 100% { transform: translateY(0) scaleY(1); }
+    50% { transform: translateY(0) scaleY(10); opacity: 0.8; }
+}
+
+/* Barras de áudio animadas */
+.audio-bars {
+    display: flex;
+    align-items: flex-end;
+    height: 100px;
+    width: 80%;
+    margin: 0 auto;
+    justify-content: center;
+    gap: 4px;
+}
+
+.bar {
+    width: 3px;
+    background-color: var(--accent-color);
+    height: 5px;
+    animation: sound 1.5s ease-in-out infinite;
+    opacity: 0.7;
+}
+
+.bar:nth-child(1) { animation-delay: 0.1s; }
+.bar:nth-child(2) { animation-delay: 0.2s; }
+.bar:nth-child(3) { animation-delay: 0.3s; }
+.bar:nth-child(4) { animation-delay: 0.4s; }
+.bar:nth-child(5) { animation-delay: 0.5s; }
+.bar:nth-child(6) { animation-delay: 0.6s; }
+.bar:nth-child(7) { animation-delay: 0.7s; }
+.bar:nth-child(8) { animation-delay: 0.8s; }
+.bar:nth-child(9) { animation-delay: 0.9s; }
+.bar:nth-child(10) { animation-delay: 1.0s; }
+.bar:nth-child(11) { animation-delay: 0.2s; }
+.bar:nth-child(12) { animation-delay: 0.3s; }
+.bar:nth-child(13) { animation-delay: 0.4s; }
+.bar:nth-child(14) { animation-delay: 0.5s; }
+.bar:nth-child(15) { animation-delay: 0.6s; }
+.bar:nth-child(16) { animation-delay: 0.7s; }
+.bar:nth-child(17) { animation-delay: 0.8s; }
+.bar:nth-child(18) { animation-delay: 0.9s; }
+.bar:nth-child(19) { animation-delay: 1.0s; }
+.bar:nth-child(20) { animation-delay: 0.1s; }
+
+@keyframes sound {
+    0% { height: 5px; }
+    50% { height: 30px; }
+    100% { height: 5px; }
+}
+
+.audio-message {
+    color: var(--accent-color);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 14px;
+    letter-spacing: 1px;
+    margin-top: 15px;
+    text-shadow: 0 0 5px var(--shadow-color);
+    animation: flicker 2s linear infinite;
+}
+
+.audio-player-container {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.audio-container audio {
+    width: 100%;
+}
+
+/* Mensagem de alerta */
+.alerta {
+    color: var(--accent-color) !important;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 15px !important;
+    text-shadow: 0 0 5px var(--shadow-color);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.7; }
+    50% { opacity: 1; }
+    100% { opacity: 0.7; }
+}
+
+.video-error, .audio-error {
+    color: var(--accent-color);
+    font-family: 'Share Tech Mono', monospace;
+    text-align: center;
+    padding: 1rem;
+}
+
+/* Instruções de vídeo */
+.video-instructions {
+    background-color: rgba(0, 0, 0, 0.7);
+    border: 1px solid var(--border-color);
+    padding: 1rem;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #999;
+}
+
+.video-instructions p {
+    margin-bottom: 0.5rem;
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+.video-instructions ol {
+    padding-left: 1.5rem;
+}
+
+.video-instructions li {
+    margin-bottom: 0.3rem;
+}
+
+/* Caixa de descrição */
+.description-box {
+    background-color: var(--secondary-color);
+    border: 1px solid var(--border-color);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+.description-box p {
+    margin-bottom: 1rem;
+}
+
+.description-box p:last-child {
+    margin-bottom: 0;
+}
+
+/* Link para voltar */
+.back-link {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.back-link a {
+    color: #666;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border-color);
+}
+
+.back-link a:hover {
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 10px var(--shadow-color);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    .glitch-title {
+        font-size: 2.5rem;
+    }
+    
+    .post-link a {
+        font-size: 1.2rem;
+    }
+}
+
+/* Estilos para audio e video players */
+audio::-webkit-media-controls,
+video::-webkit-media-controls {
+    background-color: var(--secondary-color);
+}
+
+audio::-webkit-media-controls-panel,
+video::-webkit-media-controls-panel {
+    background-color: #111;
+}
+
+/* Estilização para barra de rolagem */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-color);
+}
+
+/* Efeito TV antiga */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.15),
+        rgba(0, 0, 0, 0.15) 1px,
+        transparent 1px,
+        transparent 2px
+    );
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0.4;
+}
+
+/* Botão de Download */
+.download-button {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    margin: 1.5rem auto;
+    padding: 1rem 1.5rem;
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.2rem;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+.download-button:hover {
+    background-color: #8a0000;
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
+}
+
+.download-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.2), 
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.download-button:hover::before {
+    left: 100%;
+}
+
+.download-button::after {
+    content: "↓";
+    margin-left: 8px;
+    font-size: 1.4rem;
+}
+
+/* Posts em breve */
+.coming-soon {
+    margin-top: 2.5rem;
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
+    background-color: var(--secondary-color);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+.coming-soon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        45deg,
+        rgba(255, 0, 0, 0.1),
+        rgba(255, 0, 0, 0.1) 10px,
+        rgba(0, 0, 0, 0) 10px,
+        rgba(0, 0, 0, 0) 20px
+    );
+    z-index: 0;
+}
+
+.coming-soon-text {
+    color: var(--accent-color);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-shadow: 0 0 5px var(--shadow-color);
+    position: relative;
+    z-index: 1;
+    animation: pulse 2s infinite;
+    margin-bottom: 1rem;
+}
+
+.loading-bar {
+    width: 100%;
+    height: 8px;
+    background-color: #111;
+    position: relative;
+    overflow: hidden;
+    margin-top: 1rem;
+    border: 1px solid var(--border-color);
+}
+
+.progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 30%;
+    background-color: var(--accent-color);
+    animation: loading 3s infinite;
+}
+
+@keyframes loading {
+    0% { left: -30%; }
+    100% { left: 100%; }
+} 
